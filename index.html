@@ -148,8 +148,35 @@ POLYGON((702000.0 6201000.0,703000.0 6201000.0,703000.0 6200000.0,702000.0 62000
 							</code></pre>
 					</section>
 				</section>
-
-			</div>
+				<section>
+					<h2>Danmarks Højdemodel</h2>
+					<p>
+						Hent data fra <a href="http://download.kortforsyningen.dk/">download.kortforsyningen.dk</a> eller <a href="ftp://ftp.kortforsyningen.dk">ftp.kortforsyningen.dk</a>
+					</p>
+				</section>
+				<section>
+					<section>
+						<h2>Konvertér</h2>
+					</section>
+					<section>
+						<h4>GDAL</h4>
+						<pre><code datatrim>
+gdal_translate -of GTiff -ot float32 -a_srs epsg:25832 -co COMPRESS=lzw 
+	-co PREDICTOR=2 -co tiled=yes DTM_bro_615_53.asc DTM_BRO_615_53.tif
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Praktikalisér</h2>
+					</section>
+				</section>
+<section>
+					<section>
+						<h2>Optimeér</h2>
+					</section>
+				</section>
+				</div>
 
 		</div>
 
