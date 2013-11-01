@@ -23,7 +23,7 @@
 
 		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 		<script>
-            document.write('<link rel="stylesheet" href="css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+			document.write('<link rel="stylesheet" href="css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
 		</script>
 
 		<!--[if lt IE 9]>
@@ -38,6 +38,7 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 
+				<!-- -->
 				<section>
 					<h2>Brug Danmarks Højdemodel helt gratis</h2>
 					<h4>Kortdage 2013</h4>
@@ -45,8 +46,8 @@
 						<small>Af <a href="http://www.septima.dk/asger/">Asger Skovbo Petersen, Septima</a></small>
 					</p>
 				</section>
-
-				<section>
+				<!-- -->
+				<!--<section>
 					<h2>Hvem er Septima?</h2>
 					<p>
 						<ul>
@@ -69,8 +70,8 @@
 					<aside class="notes">
 						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
 					</aside>
-				</section>
-
+				</section>-->
+				<!-- -->
 				<section>
 					<h2>Oversigt</h2>
 					<p>
@@ -79,7 +80,7 @@
 								Introduktion til rasterdata
 							</li>
 							<li class="fragment">
-								Danmarks Højdemodel i QGIS
+								Effektiv brug af Danmarks Højdemodel i QGIS
 							</li>
 							<li class="fragment">
 								HELE Danmarks Højdemodel i QGIS
@@ -90,32 +91,32 @@
 						</ul>
 					</p>
 				</section>
-
+				<!-- -->
 				<section>
 					<h2>Få slides - meget demo</h2>
 				</section>
-
+				<!-- -->
 				<section>
 					<section>
 						<h2>Rasterdata</h2>
 					</section>
 					<section>
 						<p>
-						<img src="img/raster_basic1.png">
-						<aside class="notes">
-					        <ul>
-							<li>
-								Matrix (rækker og søjler) af celler (pixels)
-							</li>
-							<li>
-								Hver celle indeholder én værdi
-							</li>
-						</ul>
-					    </aside>
-						
+							<img src="img/raster_basic1.png">
+							<aside class="notes">
+								<ul>
+									<li>
+										Matrix (rækker og søjler) af celler (pixels)
+									</li>
+									<li>
+										Hver celle indeholder én værdi
+									</li>
+								</ul>
+							</aside>
+
 					</section>
 					<section>
-						<h3>Eksempel på rasterformat</h3>
+						<h3>Disse data på rasterformat</h3>
 						<pre><code data-trim>
 ncols         3
 nrows         4
@@ -127,11 +128,12 @@ NODATA_value  -999
 75.9 -999 82.8
 16.2 81.1 35.4
 50.0 12.2 99.9							
-						</code></pre>
+						</code></pre>						
+
 
 					</section>
 					<section>
-						<h3>Samme data i et vektorformat</h3>
+						<h3>...og på vektorformat</h3>
 						<pre><code data-trim>
 POLYGON((700000.0 6204000.0,701000.0 6204000.0,701000.0 6203000.0,700000.0 6203000.0,700000.0 6204000.0))	0.0
 POLYGON((701000.0 6204000.0,702000.0 6204000.0,702000.0 6203000.0,701000.0 6203000.0,701000.0 6204000.0))	110.1
@@ -146,17 +148,36 @@ POLYGON((700000.0 6201000.0,701000.0 6201000.0,701000.0 6200000.0,700000.0 62000
 POLYGON((701000.0 6201000.0,702000.0 6201000.0,702000.0 6200000.0,701000.0 6200000.0,701000.0 6201000.0))	12.2
 POLYGON((702000.0 6201000.0,703000.0 6201000.0,703000.0 6200000.0,702000.0 6200000.0,702000.0 6201000.0))	99.9								
 							</code></pre>
-					</section>
+					</section>					
+
 				</section>
+				<!-- -->
 				<section>
 					<h2>Danmarks Højdemodel</h2>
 					<p>
 						Hent data fra <a href="http://download.kortforsyningen.dk/">download.kortforsyningen.dk</a> eller <a href="ftp://ftp.kortforsyningen.dk">ftp.kortforsyningen.dk</a>
 					</p>
 				</section>
+				<!-- -->
 				<section>
 					<section>
-						<h2>Konvertér</h2>
+						<h2>Åbn QGIS</h2>
+						<img src="img/010_qgis_logo.png">
+					</section>
+					<section>
+						<h2>...og klø på!</h2>
+					</section>
+				</section>
+				<!-- -->
+				<section>
+					<section>
+						<h2>Hovedpointer</h2>
+					</section>
+				</section>
+				<!-- -->
+				<section>
+					<section>
+						<h2>Konvertér til GeoTIFF</h2>
 					</section>
 					<section>
 						<h4>GDAL</h4>
@@ -166,17 +187,52 @@ gdal_translate -of GTiff -ot float32 -a_srs epsg:25832 -co COMPRESS=lzw
 						</code></pre>
 					</section>
 				</section>
+				<!-- -->
 				<section>
 					<section>
-						<h2>Praktikalisér</h2>
+						<h2>Saml i én virtuel fil</h2>
 					</section>
-				</section>
-<section>
 					<section>
-						<h2>Optimeér</h2>
+						<h4>GDAL</h4>
+						<pre><code datatrim>
+gdalbuildvrt -vrtnodata -9999 samlet_fil.vrt *.tif
+						</code></pre>
 					</section>
 				</section>
-				</div>
+				<!-- -->
+				<section>
+					<section>
+						<h2>Optimér til visualisering</h2>
+					</section>
+					<section>
+						<h4>GDAL</h4>
+						<pre><code datatrim>
+gdaladdo -r average samlet_fil.vrt 8 16 32 64 128 256 512 1024 2048
+						</code></pre>
+					</section>					
+				</section>
+				<!-- -->
+				<section>
+					<section>
+					<h2>Sig lige det igen...</h2>
+					</section>
+					<section>
+						<h4>YouTube</h4>
+						<a href="http://www.youtube.com/playlist?list=PLuryEfEtfBZBpD9-KxlhjMeM1oaznPaa1" target="_blank"><img src="img/qgis_youtube.png" /></a>
+					</section>
+					<section>
+						<h2>Kurser</h2>
+						<h2>Konsulentbistand</h2>
+					</section>
+				</section>
+				<!-- -->
+				<section>
+					<h2>Tak for opmærksomheden</h2>
+					<h4><a href="mailto:asger@septima.dk">asger@septima.dk</a></h4>
+				</section>
+
+				
+			</div>
 
 		</div>
 
@@ -184,53 +240,53 @@ gdal_translate -of GTiff -ot float32 -a_srs epsg:25832 -co COMPRESS=lzw
 		<script src="js/reveal.min.js"></script>
 
 		<script>
-            // Full list of configuration options available here:
-            // https://github.com/hakimel/reveal.js#configuration
-            Reveal.initialize({
-                controls : true,
-                progress : true,
-                history : true,
-                center : true,
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls : true,
+				progress : true,
+				history : true,
+				center : true,
 
-                theme : Reveal.getQueryHash().theme, // available themes are in /css/theme
-                transition : Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+				theme : Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition : Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-                // Optional libraries used to extend on reveal.js
-                dependencies : [{
-                    src : 'lib/js/classList.js',
-                    condition : function() {
-                        return !document.body.classList;
-                    }
-                }, {
-                    src : 'plugin/markdown/marked.js',
-                    condition : function() {
-                        return !!document.querySelector('[data-markdown]');
-                    }
-                }, {
-                    src : 'plugin/markdown/markdown.js',
-                    condition : function() {
-                        return !!document.querySelector('[data-markdown]');
-                    }
-                }, {
-                    src : 'plugin/highlight/highlight.js',
-                    async : true,
-                    callback : function() {
-                        hljs.initHighlightingOnLoad();
-                    }
-                }, {
-                    src : 'plugin/zoom-js/zoom.js',
-                    async : true,
-                    condition : function() {
-                        return !!document.body.classList;
-                    }
-                }, {
-                    src : 'plugin/notes/notes.js',
-                    async : true,
-                    condition : function() {
-                        return !!document.body.classList;
-                    }
-                }]
-            });
+				// Optional libraries used to extend on reveal.js
+				dependencies : [{
+					src : 'lib/js/classList.js',
+					condition : function() {
+						return !document.body.classList;
+					}
+				}, {
+					src : 'plugin/markdown/marked.js',
+					condition : function() {
+						return !!document.querySelector('[data-markdown]');
+					}
+				}, {
+					src : 'plugin/markdown/markdown.js',
+					condition : function() {
+						return !!document.querySelector('[data-markdown]');
+					}
+				}, {
+					src : 'plugin/highlight/highlight.js',
+					async : true,
+					callback : function() {
+						hljs.initHighlightingOnLoad();
+					}
+				}, {
+					src : 'plugin/zoom-js/zoom.js',
+					async : true,
+					condition : function() {
+						return !!document.body.classList;
+					}
+				}, {
+					src : 'plugin/notes/notes.js',
+					async : true,
+					condition : function() {
+						return !!document.body.classList;
+					}
+				}]
+			});
 
 		</script>
 
