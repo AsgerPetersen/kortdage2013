@@ -93,7 +93,16 @@
 				</section>
 				<!-- -->
 				<section>
-					<h2>Få slides - meget demo</h2>
+					<section>
+						<h2>Få slides - meget demo</h2>
+					</section>
+					<section>
+						<h2>Hvad var det nu for en knap, du klikkede på...</h2>
+					</section>
+					<section>
+						<h2>YouTube</h2>
+						<a href="http://www.youtube.com/playlist?list=PLuryEfEtfBZBpD9-KxlhjMeM1oaznPaa1" target="_blank"><img src="img/qgis_youtube.png" /></a>
+					</section>
 				</section>
 				<!-- -->
 				<section>
@@ -173,57 +182,15 @@ POLYGON((702000.0 6201000.0,703000.0 6201000.0,703000.0 6200000.0,702000.0 62000
 					<section>
 						<h2>Hovedpointer</h2>
 					</section>
-				</section>
-				<!-- -->
-				<section>
 					<section>
 						<h2>Konvertér til GeoTIFF</h2>
 					</section>
 					<section>
-						<h4>GDAL</h4>
-						<pre><code datatrim>
-gdal_translate -of GTiff -ot float32 -a_srs epsg:25832 -co COMPRESS=lzw 
-	-co PREDICTOR=2 -co tiled=yes DTM_bro_615_53.asc DTM_BRO_615_53.tif
-						</code></pre>
-					</section>
-				</section>
-				<!-- -->
-				<section>
-					<section>
 						<h2>Saml i én virtuel fil</h2>
-					</section>
-					<section>
-						<h4>GDAL</h4>
-						<pre><code datatrim>
-gdalbuildvrt -vrtnodata -9999 samlet_fil.vrt *.tif
-						</code></pre>
-					</section>
-				</section>
-				<!-- -->
-				<section>
+					</section>	
 					<section>
 						<h2>Optimér til visualisering</h2>
-					</section>
-					<section>
-						<h4>GDAL</h4>
-						<pre><code datatrim>
-gdaladdo -r average samlet_fil.vrt 8 16 32 64 128 256 512 1024 2048
-						</code></pre>
-					</section>					
-				</section>
-				<!-- -->
-				<section>
-					<section>
-					<h2>Sig lige det igen...</h2>
-					</section>
-					<section>
-						<h4>YouTube</h4>
-						<a href="http://www.youtube.com/playlist?list=PLuryEfEtfBZBpD9-KxlhjMeM1oaznPaa1" target="_blank"><img src="img/qgis_youtube.png" /></a>
-					</section>
-					<section>
-						<h2>Kurser</h2>
-						<h2>Konsulentbistand</h2>
-					</section>
+					</section>														
 				</section>
 				<!-- -->
 				<section>
